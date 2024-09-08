@@ -1,0 +1,39 @@
+package com.example.controller;
+
+@RestController
+@RequestMapping("/pricing")
+public class PricingController {
+
+    @Autowired
+    private PricingService pricingService;
+
+    // 1. Get price by movieId and scheduleId
+    @GetMapping("/movie/{movieId}/schedule/{scheduleId}")
+    public ResponseEntity<Double> getPrice(
+            @PathVariable Long movieId,
+            @PathVariable Long scheduleId) {
+        double price = pricingService.getPrice(movieId, scheduleId);
+        return ResponseEntity.ok(price);
+    }
+
+    // 2. Create new pricing rule
+    @PostMapping
+    public ResponseEntity<Pricing> createPricing(@RequestBody PricingRequest pricingRequest) {
+        Pricing newPricing = pricingService.createPricing(pricingRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newPricing);
+    }
+
+    // 3. Update existing pricing rule
+    @PutMapping("/{id}")
+    public ResponseEntity<Pricing> updatePricing(@PathVariable Long id, @RequestBody PricingRequest pricingRequest) {
+        Pricing updatedPricing = pricingService.updatePricing(id, pricingRequest);
+        return ResponseEntity.ok(updatedPricing);
+    }
+
+    // 4. Delete pricing rule by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePricing(@PathVariable Long id) {
+        pricingService.deletePricing(id);
+        return ResponseEntity.ok("Pricing rule deleted successfully.");
+    }
+}

@@ -1,0 +1,10 @@
+package com.example.dto;
+
+public class ReviewRequest {
+
+    private Long movieId;
+    private Long customerId;
+    private int rating;
+    private String comment;
+   
+}

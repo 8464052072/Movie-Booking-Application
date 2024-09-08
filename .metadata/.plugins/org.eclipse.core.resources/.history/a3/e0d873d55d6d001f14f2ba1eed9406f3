@@ -1,0 +1,8 @@
+package com.example.repository;
+
+@Repository
+public interface PricingRepository extends JpaRepository<Pricing, Long> {
+
+    // Find pricing rule by movieId and scheduleId
+    Optional<Pricing> findByMovieIdAndScheduleId(Long movieId, Long scheduleId);
+}

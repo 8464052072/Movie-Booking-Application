@@ -1,0 +1,9 @@
+package com.example.dto;
+
+public class PricingRequest {
+
+    private Long movieId;
+    private Long scheduleId;
+    private double price;
+    
+}

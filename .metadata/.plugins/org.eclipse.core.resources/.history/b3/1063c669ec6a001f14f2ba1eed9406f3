@@ -1,0 +1,5 @@
+package com.example.exceptionHandler;
+
+public class GlobalExceptionHandler {
+
+}
